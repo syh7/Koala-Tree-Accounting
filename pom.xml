@@ -12,11 +12,12 @@
     </parent>
 
     <groupId>koala.tree.accounting</groupId>
-    <artifactId>Koala Tree Accounting</artifactId>
+    <artifactId>koala-tree-accounting</artifactId>
     <version>0.1-SNAPSHOT</version>
 
-    <dependencies>
+    <name>Koala Tree Accounting</name>
 
+    <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
