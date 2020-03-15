@@ -1,6 +1,7 @@
 package koalatree.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -10,7 +11,7 @@ import lombok.Builder;
 @Entity
 @Table(name = "TRANSACTIONS")
 @Builder
-public class Transaction{
+public class Transaction implements Serializable{
 
     @Id
     @GeneratedValue
