@@ -16,4 +16,12 @@ public enum Category {
     Category(String dutchName) {
         this.dutchName = dutchName;
     }
+
+    public static Category valueOfDutchName(String value) {
+        for (Category cat : values())
+            if (cat.dutchName.equals(value)) {
+                return cat;
+            }
+        throw new IllegalArgumentException("Tried parsing " + value + " to Category but failed.");
+    }
 }
