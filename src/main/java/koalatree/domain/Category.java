@@ -1,6 +1,6 @@
 package koalatree.domain;
 
-public enum Category{
+public enum Category {
 
     GROCERIES("Boodschappen"),
     PRESENTS("Cadeau"),
@@ -9,11 +9,11 @@ public enum Category{
 
     private String dutchName;
 
-    public String getDutchName(){
+    public String getDutchName() {
         return dutchName;
     }
 
-    Category(String dutchName){
+    Category(String dutchName) {
         this.dutchName = dutchName;
     }
 }

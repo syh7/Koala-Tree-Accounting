@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 import koalatree.domain.Transaction;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface TransactionRepository extends MongoRepository<Transaction, Long> {
+public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
     List<Transaction> findTransactionsByDate(LocalDate date);
 
-    List<Transaction> findTransactionsWithDateBetween(LocalDate dateStart, LocalDate dateEnd);
+    List<Transaction> findTransactionsByDateBetween(LocalDate dateStart, LocalDate dateEnd);
 
 }

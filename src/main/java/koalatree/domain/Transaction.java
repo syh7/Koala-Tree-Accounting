@@ -11,10 +11,10 @@ import lombok.Builder;
 @Entity
 @Table(name = "TRANSACTIONS")
 @Builder
-public class Transaction implements Serializable{
+public class Transaction implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private BigDecimal amountTotal;

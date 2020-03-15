@@ -20,7 +20,7 @@ public class TransactionService {
     @Autowired
     private final TransactionRepository transactionRepository;
 
-    public List<Transaction> findAllTransactions() {
+    public Iterable findAllTransactions() {
         return transactionRepository.findAll();
     }
 
@@ -33,6 +33,10 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
+    public void deleteTransaction(long id) {
+        transactionRepository.deleteById(id);
+    }
+
     public List<Transaction> findTransactionsByDate(LocalDate date) {
         return transactionRepository.findTransactionsByDate(date);
     }
@@ -41,6 +45,6 @@ public class TransactionService {
         LocalDate parsedDate = LocalDate.parse(date);
         LocalDate startDate = parsedDate.with(TemporalAdjusters.firstDayOfNextMonth());
         LocalDate endDate = parsedDate.withDayOfMonth(1).minusDays(1);
-        return transactionRepository.findTransactionsWithDateBetween(startDate, endDate);
+        return transactionRepository.findTransactionsByDateBetween(startDate, endDate);
     }
 }
