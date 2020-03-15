@@ -13,8 +13,13 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @GetMapping("/")
-    public Iterable getAllTransactions() {
+    public Iterable<Transaction> getAllTransactions() {
         return transactionService.findAllTransactions();
+    }
+
+    @PostMapping("/")
+    public Transaction saveTransaction(@RequestBody Transaction transaction) {
+        return transactionService.saveTransaction(transaction);
     }
 
     @GetMapping("/{id}")
@@ -27,11 +32,6 @@ public class TransactionController {
 //    public List<Transaction> getTransactionsByDate(@PathVariable LocalDate date) {
 //        return transactionService.findTransactionsByDate(date);
 //    }
-
-    @PostMapping("/{id}")
-    public Transaction saveTransaction(@RequestBody Transaction transaction) {
-        return transactionService.saveTransaction(transaction);
-    }
 
     @DeleteMapping("/{id}")
     public void deleteTransaction(@PathVariable long id) {
