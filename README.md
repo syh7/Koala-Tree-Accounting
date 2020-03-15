@@ -1,2 +1,2 @@
-# Koala-Tree-Accounting
+# Koala Tree Accounting
  Personal accounting tool
