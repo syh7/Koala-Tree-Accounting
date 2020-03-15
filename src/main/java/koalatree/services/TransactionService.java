@@ -1,16 +1,17 @@
 package koalatree.services;
 
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
-import java.util.List;
-
 import koalatree.domain.Transaction;
 import koalatree.exceptions.TransactionNotFoundException;
 import koalatree.repositories.TransactionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
+import java.util.List;
 
 @Service
 @Transactional
@@ -37,14 +38,15 @@ public class TransactionService {
         transactionRepository.deleteById(id);
     }
 
-    public List<Transaction> findTransactionsByDate(LocalDate date) {
+    public List<Transaction> findTransactionsByDate(String dateString) {
+        LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_DATE);
         return transactionRepository.findTransactionsByDate(date);
     }
 
     public List<Transaction> findTransactionsByMonth(String date) {
-        LocalDate parsedDate = LocalDate.parse(date);
-        LocalDate startDate = parsedDate.with(TemporalAdjusters.firstDayOfNextMonth());
-        LocalDate endDate = parsedDate.withDayOfMonth(1).minusDays(1);
+        LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ISO_DATE);
+        LocalDate startDate = parsedDate.withDayOfMonth(1).minusDays(1);
+        LocalDate endDate = parsedDate.with(TemporalAdjusters.firstDayOfNextMonth());
         return transactionRepository.findTransactionsByDateBetween(startDate, endDate);
     }
 }
