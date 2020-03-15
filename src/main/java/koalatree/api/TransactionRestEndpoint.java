@@ -17,19 +17,19 @@ public class TransactionRestEndpoint {
     @GetMapping("/transactions/")
     @ResponseBody
     public List<Transaction> getAllTransactions() {
-        return transactionService.getAllTransactions();
+        return transactionService.findAllTransactions();
     }
 
     @GetMapping("/transactions/{id}")
     @ResponseBody
     public Transaction getTransactionById(@PathVariable long id) {
-        return transactionService.getTransactionById(id);
+        return transactionService.findTransactionById(id);
     }
 
     @GetMapping("/transactions/{date}")
     @ResponseBody
     public List<Transaction> getTransactionsByDate(@PathVariable LocalDate date) {
-        return transactionService.getTransactionsByDate(date);
+        return transactionService.findTransactionsByDate(date);
     }
 
     @PostMapping("/transactions/{id}")

@@ -20,11 +20,11 @@ public class TransactionService {
     @Autowired
     private final TransactionRepository transactionRepository;
 
-    public List<Transaction> getAllTransactions() {
+    public List<Transaction> findAllTransactions() {
         return transactionRepository.findAll();
     }
 
-    public Transaction getTransactionById(long id) {
+    public Transaction findTransactionById(long id) {
         return transactionRepository.findById(id)
                 .orElseThrow(() -> new TransactionNotFoundException(id));
     }
@@ -33,7 +33,7 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public List<Transaction> getTransactionsByDate(LocalDate date) {
+    public List<Transaction> findTransactionsByDate(LocalDate date) {
         return transactionRepository.findTransactionsByDate(date);
     }
 
