@@ -11,7 +11,7 @@ public class ModuleController {
     private String appName;
 
     @GetMapping("/")
-    public String homePage() {
+    public String getAppName() {
         return appName;
     }
 }
