@@ -21,7 +21,7 @@ public class TransactionService {
     @Autowired
     private final TransactionRepository transactionRepository;
 
-    public Iterable<Transaction> findAllTransactions() {
+    public List<Transaction> findAllTransactions() {
         return transactionRepository.findAll();
     }
 
