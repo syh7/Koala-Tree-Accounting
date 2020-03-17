@@ -15,7 +15,7 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @GetMapping("/")
-    public List<Transaction> getAllTransactions() {
+    public List<Transaction> findAllTransactions() {
         return transactionService.findAllTransactions();
     }
 
