@@ -18,10 +18,11 @@ public enum Category {
     }
 
     public static Category valueOfDutchName(String value) {
-        for (Category cat : values())
+        for (Category cat : values()) {
             if (cat.dutchName.equals(value)) {
                 return cat;
             }
+        }
         throw new IllegalArgumentException("Tried parsing " + value + " to Category but failed.");
     }
 }
