@@ -28,10 +28,10 @@ public class TransactionDeserializer extends StdDeserializer<Transaction> {
     public Transaction deserialize(JsonParser parser, DeserializationContext deserializationContext) throws IOException {
         JsonNode node = parser.getCodec().readTree(parser);
         Transaction.TransactionBuilder builder = Transaction.builder()
-                .amountTotal(BigDecimal.valueOf(Double.parseDouble(node.get("amountTotal").asText())))
-                .amountSjoerd(BigDecimal.valueOf(Double.parseDouble(node.get("amountSjoerd").asText())))
-                .amountLoes(BigDecimal.valueOf(Double.parseDouble(node.get("amountLoes").asText())))
-                .amountAll(BigDecimal.valueOf(Double.parseDouble(node.get("amountAll").asText())))
+                .amountTotal(BigDecimal.valueOf((node.get("amountTotal").asDouble())))
+                .amountSjoerd(BigDecimal.valueOf((node.get("amountSjoerd").asDouble())))
+                .amountLoes(BigDecimal.valueOf((node.get("amountLoes").asDouble())))
+                .amountAll(BigDecimal.valueOf(node.get("amountAll").asDouble()))
                 .category(Category.valueOfDutchName(node.get("category").asText()))
                 .date(LocalDate.parse(node.get("date").asText(), formatter));
         if (node.has("message")) {
