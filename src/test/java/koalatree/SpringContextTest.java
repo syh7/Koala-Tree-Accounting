@@ -11,5 +11,6 @@ public class SpringContextTest {
 
     @Test
     public void contextLoadsTest() {
+        // test works by not failing
     }
 }
