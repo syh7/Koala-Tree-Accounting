@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-class TransactionControllerTest {
+public class TransactionControllerTest {
 
     @Mock
     private TransactionService transactionService;
@@ -25,7 +25,7 @@ class TransactionControllerTest {
     private TransactionController subject;
 
     @Test
-    void findAllTransactions_shouldCallService() {
+    public void findAllTransactions_shouldCallService() {
         // given
         Transaction transaction = Transaction.builder().message("test transaction").build();
         when(transactionService.findAllTransactions()).thenReturn(Collections.singletonList(transaction));
@@ -39,7 +39,7 @@ class TransactionControllerTest {
     }
 
     @Test
-    void saveTransaction_shouldCallService() {
+    public void saveTransaction_shouldCallService() {
         // given
         Transaction transaction = Transaction.builder().message("test transaction").build();
         when(transactionService.saveTransaction(transaction)).thenReturn(transaction);
@@ -52,7 +52,7 @@ class TransactionControllerTest {
     }
 
     @Test
-    void findTransactionById_shouldCallService() {
+    public void findTransactionById_shouldCallService() {
         // given
         long id = 1;
         Transaction transaction = Transaction.builder().message("test transaction").build();
@@ -66,7 +66,7 @@ class TransactionControllerTest {
     }
 
     @Test
-    void findTransactionsByDate_shouldCallService() {
+    public void findTransactionsByDate_shouldCallService() {
         // given
         String date = "date";
         Transaction transaction = Transaction.builder().message("test transaction").build();
@@ -81,7 +81,7 @@ class TransactionControllerTest {
     }
 
     @Test
-    void findTransactionsByMonth_shouldCallService() {
+    public void findTransactionsByMonth_shouldCallService() {
         // given
         String date = "date";
         Transaction transaction = Transaction.builder().message("test transaction").build();
@@ -96,7 +96,7 @@ class TransactionControllerTest {
     }
 
     @Test
-    void deleteTransaction_shouldCallService() {
+    public void deleteTransaction_shouldCallService() {
         // given
         long id = 1;
 
