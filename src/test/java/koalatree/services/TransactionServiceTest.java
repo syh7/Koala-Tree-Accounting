@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import koalatree.TestUtils;
 import koalatree.domain.Transaction;
 import koalatree.exceptions.TransactionNotFoundException;
 import koalatree.repositories.TransactionRepository;
@@ -33,7 +34,7 @@ class TransactionServiceTest {
     @Test
     public void findAllTransactions_shouldCallRepository() {
         // given
-        Transaction transaction = Transaction.builder().message("test transaction").build();
+        Transaction transaction = TestUtils.createTransaction();
         when(transactionRepository.findAll()).thenReturn(Collections.singletonList(transaction));
 
         // when
@@ -48,7 +49,7 @@ class TransactionServiceTest {
     public void findTransactionById_shouldCallRepository() {
         // given
         long id = 1L;
-        Transaction transaction = Transaction.builder().message("test transaction").build();
+        Transaction transaction = TestUtils.createTransaction();
         when(transactionRepository.findById(id)).thenReturn(Optional.of(transaction));
 
         // when
@@ -71,7 +72,7 @@ class TransactionServiceTest {
     @Test
     public void saveTransaction_shouldCallRepository() {
         // given
-        Transaction transaction = Transaction.builder().message("test transaction").build();
+        Transaction transaction = TestUtils.createTransaction();
         when(transactionRepository.save(transaction)).thenReturn(transaction);
 
         // when
@@ -97,7 +98,7 @@ class TransactionServiceTest {
     public void findTransactionsByDate_shouldParseCorrectly() {
         // given
         LocalDate now = LocalDate.now();
-        Transaction transaction = Transaction.builder().message("test transaction").build();
+        Transaction transaction = TestUtils.createTransaction();
         when(transactionRepository.findTransactionsByDate(now)).thenReturn(Collections.singletonList(transaction));
 
         // when
@@ -114,7 +115,7 @@ class TransactionServiceTest {
         LocalDate now = LocalDate.now();
         LocalDate startDate = now.withDayOfMonth(1).minusDays(1);
         LocalDate endDate = now.with(TemporalAdjusters.firstDayOfNextMonth());
-        Transaction transaction = Transaction.builder().message("test transaction").build();
+        Transaction transaction = TestUtils.createTransaction();
         when(transactionRepository.findTransactionsByDateBetween(startDate, endDate))
                 .thenReturn(Collections.singletonList(transaction));
 
