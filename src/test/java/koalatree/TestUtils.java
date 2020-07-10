@@ -24,7 +24,6 @@ public final class TestUtils {
 
     public static Transaction createTransaction() {
         return Transaction.builder()
-                .category(Category.OTHER)
                 .date(LocalDate.now())
                 .entries(createEntrySet(5))
                 .build();
@@ -32,9 +31,7 @@ public final class TestUtils {
 
     public static Set<Entry> createEntrySet(int size) {
         HashSet<Entry> entries = new HashSet<>();
-        for (int i = 0;
-             i < size;
-             i++) {
+        for (int i = 0; i < size; i++) {
             entries.add(createEntry());
         }
         return entries;
@@ -44,6 +41,7 @@ public final class TestUtils {
         return Entry.builder()
                 .amount(BigDecimal.ONE)
                 .user(User.ALL)
+                .category(Category.OTHER)
                 .build();
     }
 }

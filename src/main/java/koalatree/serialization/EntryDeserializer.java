@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import koalatree.domain.Category;
 import koalatree.domain.Entry;
 import koalatree.domain.User;
 
@@ -28,6 +29,7 @@ public class EntryDeserializer extends StdDeserializer<Entry> {
         JsonNode node = parser.getCodec().readTree(parser);
         return Entry.builder()
                 .user(User.valueOf(node.get("user").asText()))
+                .category(Category.valueOf(node.get("category").asText()))
                 .amount(BigDecimal.valueOf(node.get("amount").asDouble()))
                 .build();
     }

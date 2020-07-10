@@ -25,6 +25,7 @@ public class EntrySerializer extends StdSerializer<Entry> {
         generator.writeStartObject();
         generator.writeNumberField("id", entry.getId());
         generator.writeStringField("user", entry.getUser().name());
+        generator.writeStringField("category", entry.getCategory().name());
         generator.writeStringField("amount", entry.getAmount().toString());
         generator.writeStringField("createdDateTime", entry.getCreatedDateTime().format(formatter));
         generator.writeEndObject();

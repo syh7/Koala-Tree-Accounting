@@ -31,6 +31,9 @@ public class Entry {
     @Enumerated(EnumType.STRING)
     private User user;
 
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
     private BigDecimal amount;
 
     @CreationTimestamp

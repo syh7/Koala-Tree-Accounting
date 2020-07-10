@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.JsonNode;
+import koalatree.domain.Category;
 import koalatree.domain.Entry;
 import koalatree.domain.User;
 import org.junit.jupiter.api.Test;
@@ -31,8 +32,9 @@ public class EntryDeserializerTest {
 
     private EntryDeserializer subject = new EntryDeserializer();
 
-    private Double AMOUNT = 1.5;
-    private User USER = User.ALL;
+    private final static Double AMOUNT = 1.5;
+    private final static User USER = User.ALL;
+    private final static Category CATEGORY = Category.OTHER;
 
     @Test
     public void deserialize_shouldDeserializeWithMessage() throws IOException {
@@ -48,12 +50,17 @@ public class EntryDeserializerTest {
         when(userMock.asText()).thenReturn(USER.name());
         when(node.get("user")).thenReturn(userMock);
 
+        JsonNode categoryMock = mock(JsonNode.class);
+        when(categoryMock.asText()).thenReturn(CATEGORY.name());
+        when(node.get("category")).thenReturn(categoryMock);
+
         // when
         Entry result = subject.deserialize(parser, null);
 
         // then
         assertThat(result).isNotNull();
         assertThat(result.getUser()).isEqualTo(USER);
+        assertThat(result.getCategory()).isEqualTo(CATEGORY);
         assertThat(result.getAmount()).isEqualTo(BigDecimal.valueOf(AMOUNT));
     }
 }

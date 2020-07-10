@@ -3,6 +3,7 @@ package koalatree.serialization;
 import static org.mockito.Mockito.verify;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import koalatree.domain.Category;
 import koalatree.domain.Entry;
 import koalatree.domain.User;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,7 @@ public class EntrySerializerTest {
                 .id(1L)
                 .amount(BigDecimal.ONE)
                 .user(User.ALL)
+                .category(Category.OTHER)
                 .createdDateTime(ZonedDateTime.now())
                 .build();
 
@@ -43,6 +45,7 @@ public class EntrySerializerTest {
         verify(generator).writeStartObject();
         verify(generator).writeNumberField("id", entry.getId());
         verify(generator).writeStringField("user", entry.getUser().name());
+        verify(generator).writeStringField("category", entry.getCategory().name());
         verify(generator).writeStringField("amount", entry.getAmount().toString());
         verify(generator).writeStringField("createdDateTime", entry.getCreatedDateTime().format(FORMATTER));
         verify(generator).writeEndObject();
